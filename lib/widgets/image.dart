@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../models/item.dart';
 
 class ImageInput extends StatefulWidget {
@@ -64,8 +66,7 @@ class _ImageInputState extends State<ImageInput> {
 
   @override
   Widget build(BuildContext context) {
-    final buttonColor = Theme.of(context).primaryColor;
-    Widget previewImage = Text('Please select an image.');
+    Widget previewImage = Text('Por favor, escolha uma foto.');
     if (_imageFile != null) {
       previewImage = Image.file(
         _imageFile,
@@ -88,7 +89,7 @@ class _ImageInputState extends State<ImageInput> {
       children: <Widget>[
         OutlineButton(
           borderSide: BorderSide(
-            color: buttonColor,
+            color: Colors.amber,
             width: 2.0,
           ),
           onPressed: () {
@@ -99,23 +100,20 @@ class _ImageInputState extends State<ImageInput> {
             children: <Widget>[
               Icon(
                 Icons.camera_alt,
-                color: buttonColor,
+                color: Colors.amberAccent,
               ),
               SizedBox(
                 width: 5.0,
               ),
               Text(
-                'Add Image',
-                style: TextStyle(color: buttonColor),
+                'Selecionar Imagem',
+                style: TextStyle(color: Colors.amberAccent),
               )
             ],
           ),
         ),
         SizedBox(height: 10.0),
         previewImage
-        // _imageFile == null
-        //     ? Text('Please pick an image.')
-        //     :
       ],
     );
   }
