@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,24 +68,18 @@ class _ImageInputState extends State<ImageInput> {
   @override
   Widget build(BuildContext context) {
     Widget previewImage = Text('Por favor, escolha uma foto.');
-    if (_imageFile != null) {
-      previewImage = Image.file(
-        _imageFile,
-        fit: BoxFit.cover,
-        height: 300.0,
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.topCenter,
-      );
-    } else if (widget.item != null) {
-      previewImage = Image.network(
-        widget.item.image,
-        fit: BoxFit.cover,
-        height: 300.0,
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.topCenter,
-      );
-    }
+    List<int> imageBytes;
+    String base64Image;
 
+    if (_imageFile != null) {
+      previewImage = Image.file(_imageFile,
+          fit: BoxFit.cover,
+          height: 300.0,
+          width: MediaQuery.of(context).size.width,
+          alignment: Alignment.topCenter);
+      imageBytes = _imageFile.readAsBytesSync();
+      base64Image = base64.encode(imageBytes);
+    }
     return Column(
       children: <Widget>[
         OutlineButton(
