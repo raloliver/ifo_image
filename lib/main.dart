@@ -31,6 +31,7 @@ class _DodIimageApp extends State<DodIimageApp> {
             fontFamily: 'Roboto',
           ),
           home: Home(),
+          debugShowCheckedModeBanner: false,
         ));
   }
 }
